@@ -1,8 +1,8 @@
 {
   "name": "nebjs-template-string-simple",
-  "version": "1.0.1",
-  "description": "string code",
-  "main": "index.js",
+  "version": "1.0.3",
+  "description": "string template",
+  "main": "build/dev/nebjs-template-string-simple.js",
   "scripts": {
     "test": "node_modules/.bin/mocha",
     "dev": "node_modules/.bin/webpack --config webpack/dev.config.js"
