@@ -25,9 +25,9 @@ const createCodeStr = function (context, str) {
   }
   return backStr;
 };
-const parseStr = function (context, bind, str) {
+const parseStr = function (parseContext, str) {
   let code = str, backStr = '', match, rep = false;
-  const {regExp, errors} = context, {blockFixBeginReg, codeBlockReg} = regExp;
+  const {context, bind, errors} = parseContext, {regExp} = context, {blockFixBeginReg, codeBlockReg} = regExp;
   while (code.length > 0) {
     match = blockFixBeginReg.exec(code);
     if (match) {
@@ -99,9 +99,9 @@ class Parser {
     this.parserString = str;
     if (!str) return '';
     let parseBack;
-    const {context, bind} = this, {regExp, deepMode} = context, {blockFixReg} = regExp;
+    const {context} = this, {regExp, deepMode} = context, {blockFixReg} = regExp;
     do {
-      parseBack = parseStr(context, bind, str);
+      parseBack = parseStr(this, str);
       str = parseBack.str;
     } while (deepMode && parseBack.rep);
     if (str) str = str.replace(blockFixReg, '$1');

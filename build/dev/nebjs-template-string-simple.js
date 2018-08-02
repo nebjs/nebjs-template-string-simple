@@ -200,13 +200,15 @@ var createCodeStr = function createCodeStr(context, str) {
   }
   return backStr;
 };
-var parseStr = function parseStr(context, bind, str) {
+var parseStr = function parseStr(parseContext, str) {
   var code = str,
       backStr = '',
       match = void 0,
       rep = false;
-  var regExp = context.regExp,
-      errors = context.errors,
+  var context = parseContext.context,
+      bind = parseContext.bind,
+      errors = parseContext.errors,
+      regExp = context.regExp,
       blockFixBeginReg = regExp.blockFixBeginReg,
       codeBlockReg = regExp.codeBlockReg;
 
@@ -289,13 +291,11 @@ var Parser = function () {
       if (!str) return '';
       var parseBack = void 0;
       var context = this.context,
-          bind = this.bind,
           regExp = context.regExp,
           deepMode = context.deepMode,
           blockFixReg = regExp.blockFixReg;
-
       do {
-        parseBack = parseStr(context, bind, str);
+        parseBack = parseStr(this, str);
         str = parseBack.str;
       } while (deepMode && parseBack.rep);
       if (str) str = str.replace(blockFixReg, '$1');

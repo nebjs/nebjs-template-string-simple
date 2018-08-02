@@ -1,6 +1,6 @@
 {
   "name": "nebjs-template-string-simple",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "string template",
   "main": "build/dev/nebjs-template-string-simple.js",
   "scripts": {
